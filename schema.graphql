@@ -1,0 +1,54 @@
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  """
+  The cursor corresponding to the last nodes in edges. Null if the connection is empty.
+  """
+  endCursor: String
+
+  """
+  Used to indicate whether more edges exist following the set defined by the clients arguments.
+  """
+  hasNextPage: Boolean!
+
+  """
+  Used to indicate whether more edges exist prior to the set defined by the clients arguments.
+  """
+  hasPreviousPage: Boolean!
+
+  """
+  The cursor corresponding to the first nodes in edges. Null if the connection is empty.
+  """
+  startCursor: String
+}
+
+type User implements Node {
+  id: ID!
+  username: String
+}
+
+type Device implements Node {
+  id: ID!
+  name: String
+}
+
+type DeviceConnection {
+  edges: [DeviceEdge]
+  pageInfo: PageInfo!
+}
+
+type DeviceEdge {
+  node: Device
+  cursor: String!
+}
+
+type Query {
+  me: User
+  devices(first: Int, after: String): DeviceConnection
+}
+
+schema {
+  query: Query
+}

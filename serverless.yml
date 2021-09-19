@@ -1,0 +1,57 @@
+service:
+  name: serverless-appsync-relay
+  publish: false # disable auto-publishing to the Serverless platform
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: ap-southeast-1
+
+plugins:
+  - serverless-offline
+  - serverless-appsync-simulator
+  - serverless-appsync-plugin
+  - serverless-webpack
+functions:
+  user-fn:
+    handler: src/functions/user/index.handler
+  device-fn:
+    handler: src/functions/device/index.handler
+custom:
+  appSync:
+    name: ServelessAppSyncRelay
+    schema: schema.graphql
+    authenticationType: AMAZON_COGNITO_USER_POOLS
+    userPoolConfig:
+      awsRegion: # defaults to provider region
+      defaultAction: # ALLOW
+      userPoolId: # required # user pool ID
+    mappingTemplatesLocation: src/mapping-templates
+    mappingTemplates:
+      ##Device Query Start##
+      - dataSource: LambdaDeviceDatasource
+        type: Query
+        field: devices
+        request: false
+        response: false
+      - dataSource: LambdaUserDatasource
+        type: Query
+        field: me
+        request: false
+        response: false
+      - dataSource: LambdaUserDatasource
+        type: Query
+        field: me
+        request: false
+        response: false
+    dataSources:
+      - type: AWS_LAMBDA
+        name: LambdaDeviceDatasource
+        config:
+          functionName: device-fn
+      - type: AWS_LAMBDA
+        name: LambdaUserDatasource
+        config:
+          functionName: user-fn
+      - type: NONE
+        name: LocalResolver
