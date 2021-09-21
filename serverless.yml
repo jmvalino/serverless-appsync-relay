@@ -39,11 +39,6 @@ custom:
         field: me
         request: false
         response: false
-      - dataSource: LambdaUserDatasource
-        type: Query
-        field: me
-        request: false
-        response: false
     dataSources:
       - type: AWS_LAMBDA
         name: LambdaDeviceDatasource

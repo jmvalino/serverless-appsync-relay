@@ -5,28 +5,24 @@
   "main": "index.js",
   "scripts": {
     "dev": "sls offline start",
-    "codegen": "graphql-codegen", 
+    "codegen": "graphql-codegen",
     "seed": "ts-node prisma/seed.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^3.0.2",
-    "babel-polyfill": "^6.26.0",
-    "serverless": "^2.59.0",
-    "serverless-appsync-simulator": "^0.19.1",
-    "serverless-offline": "^6.7.0"
+    "@prisma/client": "^3.0.2"
   },
   "devDependencies": {
+    "serverless": "^2.59.0",
+    "serverless-appsync-simulator": "^0.19.1",
+    "serverless-offline": "^6.7.0",
     "@graphql-codegen/cli": "^2.2.0",
     "@graphql-codegen/typescript": "^2.2.2",
     "@serverless/typescript": "^2.55.0",
     "@types/aws-lambda": "^8.10.83",
     "@types/node": "^16.9.2",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
     "copy-webpack-plugin": "^9.0.1",
     "jest": "^21.2.1",
     "prisma": "^3.0.2",
