@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "sls offline start",
+    "codegen": "graphql-codegen", 
     "seed": "ts-node prisma/seed.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,7 +19,10 @@
     "serverless-offline": "^6.7.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^2.2.0",
+    "@graphql-codegen/typescript": "^2.2.2",
     "@serverless/typescript": "^2.55.0",
+    "@types/aws-lambda": "^8.10.83",
     "@types/node": "^16.9.2",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",

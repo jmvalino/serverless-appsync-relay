@@ -1,16 +1,19 @@
+import { AppSyncResolverHandler } from 'aws-lambda';
+import { User, Query } from '../../../appsync';
+
 const resolvers = {
     Query: {
       me: (ctx) => { 
-          console.log(ctx.identity)
+        console.log(ctx)
         return {
             id: ctx.identity.sub,
             username: ctx.identity.username,
         }
       },
     },
-  }
+  } 
 
-export const handler = async (event) => {
+export const handler: AppSyncResolverHandler<Query, User> = async (event) => {
      
     const typeHandler = resolvers[event.info.parentTypeName];
     if (typeHandler) {
