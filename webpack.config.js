@@ -56,5 +56,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [new CopyWebpackPlugin(['./prisma/schema.prisma'])],
+  plugins: [new CopyWebpackPlugin({ patterns: ['./prisma/schema.prisma']})],
 };

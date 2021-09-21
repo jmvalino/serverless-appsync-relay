@@ -10,7 +10,7 @@ const resolvers = {
     },
   }
 
-  export const handler = async (event) => {
+export const handler = async (event) => {
      
     const typeHandler = resolvers[event.info.parentTypeName];
     if (typeHandler) {

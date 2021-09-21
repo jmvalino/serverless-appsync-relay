@@ -13,13 +13,9 @@
   "dependencies": {
     "@prisma/client": "^3.0.2",
     "babel-polyfill": "^6.26.0",
-    "bluebird": "^3.5.1",
-    "node-fetch": "^1.7.3",
-    "oauth": "^0.9.15",
     "serverless": "^2.59.0",
     "serverless-appsync-simulator": "^0.19.1",
-    "serverless-offline": "^6.7.0",
-    "twitter": "^1.7.1"
+    "serverless-offline": "^6.7.0"
   },
   "devDependencies": {
     "@serverless/typescript": "^2.55.0",
@@ -27,11 +23,7 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
-    "body-parser": "^1.15.2",
-    "copy-webpack-plugin": "^5.1.1",
-    "cors": "2.8.4",
-    "env-cmd": "^5.0.0",
-    "imports-loader": "^0.7.1",
+    "copy-webpack-plugin": "^9.0.1",
     "jest": "^21.2.1",
     "prisma": "^3.0.2",
     "serverless-appsync-plugin": "latest",
@@ -41,6 +33,6 @@
     "tsconfig-paths-webpack-plugin": "^3.5.1",
     "typescript": "^4.4.3",
     "webpack": "^5.53.0",
-    "webpack-node-externals": "^1.6.0"
+    "webpack-node-externals": "^3.0.0"
   }
 }
