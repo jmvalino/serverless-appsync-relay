@@ -1,6 +1,5 @@
 service:
   name: serverless-appsync-relay
-  publish: false # disable auto-publishing to the Serverless platform
 
 provider:
   name: aws
@@ -17,6 +16,8 @@ functions:
     handler: src/functions/user/index.handler
   device-fn:
     handler: src/functions/device/index.handler
+  node-fn:
+    handler: src/functions/node.handler
 custom:
   appSync:
     name: ServelessAppSyncRelay
@@ -39,6 +40,11 @@ custom:
         field: me
         request: false
         response: false
+      - dataSource: LocalResolver
+        type: DeviceEdge
+        field: node
+        request: Node.request.vtl
+        response: Node.response.vtl
     dataSources:
       - type: AWS_LAMBDA
         name: LambdaDeviceDatasource
@@ -48,5 +54,9 @@ custom:
         name: LambdaUserDatasource
         config:
           functionName: user-fn
+      - type: AWS_LAMBDA
+        name: LambdaNodeDatasource
+        config:
+          functionName: node-fn
       - type: NONE
         name: LocalResolver

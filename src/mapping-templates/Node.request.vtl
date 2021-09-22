@@ -1,6 +1,10 @@
-#foreach ($result in $context.result)
-    ## Extract type name from the id field.
-    #set( $typeName = $result.id.split("-")[0] )
-    #set( $ignore = $result.put("__typename", $typeName))
-#end
-$util.toJson($context.result)
+
+#set($node = $context.source.node)
+#set($edge = $context.info.parentTypeName.toString().split("Edge"))
+#set($typeName = $edge.get(0))
+#set($id = $context.source.node.id)
+#set($node.id = $util.base64Encode("$typeName:$id"))
+{
+   "version": "2018-05-29",
+   "payload": $util.toJson($node)
+}

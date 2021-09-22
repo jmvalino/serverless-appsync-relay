@@ -5,7 +5,6 @@ const prisma = new PrismaClient()
 const resolvers = {
   Query: {
     devices: async (ctx) => {
-      console.log(ctx.args.first)
       const devices = await prisma.device.findMany({
        take: ctx.args.first
       })
