@@ -13,11 +13,11 @@ plugins:
   - serverless-webpack
 functions:
   user-fn:
-    handler: src/functions/user/index.handler
+    handler: src/handlers/user/index.handler
   device-fn:
-    handler: src/functions/device/index.handler
+    handler: src/handlers/device/index.handler
   node-fn:
-    handler: src/functions/node.handler
+    handler: src/handlers/node.handler
 custom:
   appSync:
     name: ServelessAppSyncRelay
