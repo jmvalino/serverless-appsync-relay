@@ -1,0 +1,24 @@
+###############
+#### Query ####
+###############
+- dataSource: DeviceTable
+  type: Query
+  field: devices
+  request: Model.RelayConnection.request.vtl
+  response: Model.RelayConnection.response.vtl
+####################
+##### Mutation #####
+####################
+- dataSource: DeviceTable
+  type: Mutation
+  field: deviceCreate
+  request: Mutation.deviceCreate.request.vtl
+  response: Mutation.deviceCreate.response.vtl
+##################
+##### Device #####
+##################
+- dataSource: LambdaNodeDatasource
+  type: Device
+  field: id
+  request: false
+  response: false

@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": ["ESNext"],
+    "allowJs": true,
+    "checkJs": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node"
+  },
+  "include": ["functions/**/*.ts", "src/**/*.js"]
+}

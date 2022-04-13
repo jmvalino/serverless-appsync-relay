@@ -1,0 +1,41 @@
+name: ServelessAppSyncRelay
+schema: schema/**/*.graphql
+
+authenticationType: AMAZON_COGNITO_USER_POOLS
+userPoolConfig:
+  awsRegion: # defaults to provider region
+  defaultAction: ALLOW
+  userPoolId: !Ref CognitoUserPool
+mappingTemplatesLocation: mapping-templates
+mappingTemplates:
+  - ${file(./schema/Device/resolvers.yml)}
+  - ${file(./schema/User/resolvers.yml)}
+
+dataSources:
+  - type: AMAZON_DYNAMODB
+    name: DeviceTable
+    description: # DynamoDB Table Description
+    config:
+      tableName: !Ref DeviceTable # Where MyTable is a dynamodb table defined in Resources
+      serviceRoleArn: { Fn::GetAtt: [AppSyncDynamoDBServiceRole, Arn] } # Where AppSyncDynamoDBServiceRole is an IAM role defined in Resources
+      iamRoleStatements: # custom IAM Role statements for this DataSource. Ignored if `serviceRoleArn` is present. Auto-generated if both `serviceRoleArn` and `iamRoleStatements` are omitted
+        - Effect: 'Allow'
+          Action:
+            - 'dynamodb:GetItem'
+          Resource:
+            - 'arn:aws:dynamodb:{REGION}:{ACCOUNT_ID}:DeviceTable'
+            - 'arn:aws:dynamodb:{REGION}:{ACCOUNT_ID}:DeviceTable/*'
+  - type: AWS_LAMBDA
+    name: LambdaDeviceDatasource
+    config:
+      functionName: device-fn
+  - type: AWS_LAMBDA
+    name: LambdaUserDatasource
+    config:
+      functionName: user-fn
+  - type: AWS_LAMBDA
+    name: LambdaNodeDatasource
+    config:
+      functionName: node-fn
+  - type: NONE
+    name: LocalResolver

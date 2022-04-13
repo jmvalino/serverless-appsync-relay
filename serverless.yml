@@ -1,0 +1,47 @@
+service: serverless-appsync-relay
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: ap-southeast-1
+  lambdaHashingVersion: 20201221
+
+plugins:
+  - serverless-offline
+  - serverless-dynamodb-local
+  - serverless-appsync-simulator
+  - serverless-appsync-plugin
+  - serverless-webpack
+functions:
+  user-fn:
+    handler: functions/user/index.handler
+  device-fn:
+    handler: functions/device/index.handler
+  node-fn:
+    handler: functions/node.handler
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+    packagerOptions:
+      scripts: # this is the magic
+        - npx prisma generate
+  dynamodb:
+    # If you only want to use DynamoDB Local in some stages, declare them here
+    stages:
+      - dev
+    start:
+      port: 8000
+      inMemory: true
+      heapInitial: 200m
+      heapMax: 1g
+      migrate: true
+      seed: true
+      convertEmptyValues: true
+      # Uncomment only if you already have a DynamoDB running locally
+      noStart: true
+  appSync:
+    - ${file(./serverless.appsync.yml)}
+
+resources:
+  - ${file(./resources.yml)}

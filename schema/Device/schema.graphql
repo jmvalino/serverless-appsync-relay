@@ -1,0 +1,26 @@
+type Device implements Node {
+  id: ID!
+  name: String
+}
+
+type Query {
+  devices(first: Int, after: String): DeviceConnection
+}
+
+type Mutation {
+  deviceCreate(input: DeviceCreateInput): Device
+}
+
+type DeviceConnection {
+  edges: [DeviceEdge]
+  pageInfo: PageInfo!
+}
+
+type DeviceEdge {
+  node: Device
+  cursor: String!
+}
+
+input DeviceCreateInput {
+  name: String!
+}

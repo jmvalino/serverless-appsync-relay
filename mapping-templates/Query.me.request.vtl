@@ -1,0 +1,7 @@
+#set($me = {})
+#set($me.username = $context.identity.username)
+#set($me.id = $context.identity.sub)
+{
+   "version": "2018-05-29",
+   "payload": $util.toJson($me)
+}

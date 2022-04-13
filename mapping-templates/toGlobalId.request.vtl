@@ -1,0 +1,8 @@
+
+#set($typeName = $context.info.parentTypeName)
+#set($id = $context.source.id)
+#set($globalId = $util.base64Encode("$typeName:$id"))
+{
+   "version": "2018-05-29",
+   "payload": $util.toJson($globalId)
+}

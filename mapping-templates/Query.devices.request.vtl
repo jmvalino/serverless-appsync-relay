@@ -1,0 +1,7 @@
+{
+    "version" : "2017-02-28",
+    "operation" : "Scan",
+    "limit": #if($context.args.first) $context.args.first #else 10 #end,
+    "consistentRead" : false,
+    "nextToken": #if($context.args.after) "$context.args.after" #else null #end,
+}

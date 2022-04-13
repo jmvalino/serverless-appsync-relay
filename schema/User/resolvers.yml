@@ -1,0 +1,21 @@
+###############
+#### Query ####
+###############
+- dataSource: LocalResolver
+  type: Query
+  field: me
+  request: Query.me.request.vtl
+  response: Model.Result.response.vtl
+
+####################
+##### Mutation #####
+####################
+
+################
+##### User #####
+################
+- dataSource: LocalResolver
+  type: User
+  field: id
+  request: toGlobalId.request.vtl
+  response: Model.Result.response.vtl
