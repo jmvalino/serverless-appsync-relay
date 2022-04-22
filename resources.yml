@@ -40,6 +40,19 @@ Resources:
                   - 'dynamodb:Query'
                   - 'dynamodb:Scan'
                 Resource: '*'
+  UserTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: DeviceTable
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      # Set the capacity to auto-scale
+      BillingMode: PAY_PER_REQUEST
+
   DeviceTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -47,12 +60,25 @@ Resources:
       AttributeDefinitions:
         - AttributeName: id
           AttributeType: S
-        - AttributeName: name
-          AttributeType: S
       KeySchema:
         - AttributeName: id
           KeyType: HASH
-        - AttributeName: name
+      # Set the capacity to auto-scale
+      BillingMode: PAY_PER_REQUEST
+
+  UserDeviceTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: UserDeviceTable
+      AttributeDefinitions:
+        - AttributeName: userId
+          AttributeType: S
+        - AttributeName: deviceId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: userId
+          KeyType: HASH
+        - AttributeName: deviceId
           KeyType: RANGE
       # Set the capacity to auto-scale
       BillingMode: PAY_PER_REQUEST

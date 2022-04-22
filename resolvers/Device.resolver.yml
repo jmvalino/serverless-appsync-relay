@@ -17,8 +17,8 @@
 ##################
 ##### Device #####
 ##################
-- dataSource: LambdaNodeDatasource
+- dataSource: LocalResolver
   type: Device
   field: id
-  request: false
-  response: false
+  request: toGlobalId.request.vtl
+  response: Model.Result.response.vtl

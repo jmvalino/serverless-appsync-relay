@@ -1,5 +1,5 @@
 name: ServelessAppSyncRelay
-schema: schema/**/*.graphql
+schema: schema/*.graphql
 
 authenticationType: AMAZON_COGNITO_USER_POOLS
 userPoolConfig:
@@ -8,8 +8,8 @@ userPoolConfig:
   userPoolId: !Ref CognitoUserPool
 mappingTemplatesLocation: mapping-templates
 mappingTemplates:
-  - ${file(./schema/Device/resolvers.yml)}
-  - ${file(./schema/User/resolvers.yml)}
+  - ${file(./resolvers/Device.resolver.yml)}
+  - ${file(./resolvers/User.resolver.yml)}
 
 dataSources:
   - type: AMAZON_DYNAMODB
