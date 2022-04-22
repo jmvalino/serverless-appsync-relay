@@ -1,5 +1,5 @@
 service: serverless-appsync-relay
-
+frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs14.x
@@ -44,4 +44,4 @@ custom:
     - ${file(./serverless.appsync.yml)}
 
 resources:
-  - ${file(./resources.yml)}
+  - ${file(./serverless.resources.yml)}

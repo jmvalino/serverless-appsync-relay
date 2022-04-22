@@ -2,18 +2,26 @@ Resources:
   CognitoUserPool:
     Type: AWS::Cognito::UserPool
     Properties:
-      UserPoolName: ${self:service.name}-user-pool
+      UserPoolName: ${self:service}-user-pool
       AutoVerifiedAttributes:
         - email
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 8
+          RequireLowercase: true
+          RequireNumbers: true
+          RequireSymbols: true
+          RequireUppercase: true
 
   CognitoUserPoolClient:
     Type: AWS::Cognito::UserPoolClient
     Properties:
-      ClientName: ${self:service.name}-user-pool-client
+      ClientName: ${self:service}-user-pool-client
       UserPoolId: !Ref CognitoUserPool
       ExplicitAuthFlows:
         - ADMIN_NO_SRP_AUTH
       GenerateSecret: false
+
   AppSyncDynamoDBServiceRole:
     Type: AWS::IAM::Role
     Properties:
