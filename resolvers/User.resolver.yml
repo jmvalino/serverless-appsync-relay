@@ -15,7 +15,5 @@ Query.me:
 ################
 User.id:
   dataSource: LocalResolver
-  type: User
-  field: id
   request: toGlobalId.request.vtl
   response: Model.Result.response.vtl
