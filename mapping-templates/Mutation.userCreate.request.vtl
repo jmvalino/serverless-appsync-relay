@@ -1,0 +1,22 @@
+#set($id=$util.autoId())
+#set($attributeValues={})
+$util.qr($attributeValues.put("id", $util.dynamodb.toDynamoDB($id)))
+$util.qr($attributeValues.put("type", $util.dynamodb.toDynamoDB("Type")))
+#foreach($item in $ctx.args.input.entrySet())
+  $util.qr($attributeValues.put("${item.key}", $util.dynamodb.toDynamoDB($item.value)))
+#end
+{
+  "version": "2018-05-29",
+  "operation": "PutItem",
+  "key": {
+    "PK": $util.dynamodb.toDynamoDBJson("ITEM#${id}"),
+    "SK": $util.dynamodb.toDynamoDBJson("ITEM#${id}")
+  },
+  "attributeValues": $util.toJson($attributeValues)
+  "condition": {
+    "expression": "attribute_not_exists(#PK)",
+    "expressionNames": {
+      "#PK": "PK"
+    }
+  }
+}

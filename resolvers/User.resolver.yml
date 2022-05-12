@@ -1,9 +1,8 @@
 ###############
 #### Query ####
 ###############
-- dataSource: LocalResolver
-  type: Query
-  field: me
+Query.me:
+  dataSource: LocalResolver
   request: Query.me.request.vtl
   response: Model.Result.response.vtl
 
@@ -14,7 +13,8 @@
 ################
 ##### User #####
 ################
-- dataSource: LocalResolver
+User.id:
+  dataSource: LocalResolver
   type: User
   field: id
   request: toGlobalId.request.vtl

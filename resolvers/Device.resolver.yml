@@ -1,24 +1,20 @@
 ###############
 #### Query ####
 ###############
-- dataSource: DeviceTable
-  type: Query
-  field: devices
+Query.devices:
+  dataSource: DeviceTable
   request: Model.RelayConnection.request.vtl
   response: Model.RelayConnection.response.vtl
 ####################
 ##### Mutation #####
 ####################
-- dataSource: DeviceTable
-  type: Mutation
-  field: deviceCreate
-  request: Mutation.deviceCreate.request.vtl
-  response: Mutation.deviceCreate.response.vtl
+Mutation.deviceCreate:
+  dataSource: DeviceTable
+
 ##################
 ##### Device #####
 ##################
-- dataSource: LocalResolver
-  type: Device
-  field: id
+Device.id:
+  dataSource: LocalResolver
   request: toGlobalId.request.vtl
-  response: Model.Result.response.vtl
+  esponse: Model.Result.response.vtl

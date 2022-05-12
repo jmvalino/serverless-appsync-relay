@@ -7,7 +7,7 @@ userPoolConfig:
   defaultAction: ALLOW
   userPoolId: !Ref CognitoUserPool
 mappingTemplatesLocation: mapping-templates
-mappingTemplates:
+resolvers:
   - ${file(./resolvers/Device.resolver.yml)}
   - ${file(./resolvers/User.resolver.yml)}
 
